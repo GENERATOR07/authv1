@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login with Magic Link</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      form {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="email"] {
+        padding: 0.5rem;
+        width: 100%;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        background: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="magic-form">
+      <h2>Login with Magic Link</h2>
+      <input type="email" id="email" placeholder="Enter your email" required />
+      <button type="submit">Send Magic Link</button>
+      <p id="response"></p>
+    </form>
+
+    <script>
+      console.log("loaded");
+      const form = document.getElementById("magic-form");
+      const responseMsg = document.getElementById("response");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value;
+
+        const res = await fetch("auth/magic-link", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await res.json();
+        responseMsg.textContent = data.message || data.error;
+      });
+    </script>
+  </body>
+</html>
