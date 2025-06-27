@@ -16,4 +16,5 @@ export const env = {
   JWT_SECRET: getEnv("JWT_SECRET"),
   EMAIL_USER: getEnv("EMAIL_USER"),
   EMAIL_PASSWORD: getEnv("EMAIL_PASSWORD"),
+  GOOGLE_CLIENT_ID: getEnv("GOOGLE_CLIENT_ID"),
 };
