@@ -9,7 +9,6 @@ import { generateToken, verifyToken } from "../utils/token-util";
 import { blacklistToken } from "../services/token-service";
 
 export async function requestMagicLinkHandler(req: Request, res: Response) {
-  console.log("requestMagicLinkHandler");
   const { email } = req.body;
 
   if (!email) {
@@ -26,7 +25,6 @@ export async function requestMagicLinkHandler(req: Request, res: Response) {
 }
 
 export async function magicLoginHandler(req: Request, res: Response) {
-  console.log("verifying token");
   const { token } = req.body;
 
   if (!token || typeof token !== "string") {
@@ -56,6 +54,7 @@ export async function getProfileHandler(req: Request, res: Response) {
         displayName: user.displayName,
         bio: user.bio,
         avatar: user.avatar,
+        isMember: user.isMember,
       },
     });
   } catch (err) {
@@ -76,6 +75,7 @@ export async function updateUserHandler(req: Request, res: Response) {
     "_id",
     "createdAt",
     "updatedAt",
+    "isMember",
   ];
   protectedFields.forEach((field) => delete updateData[field]);
 
@@ -107,6 +107,7 @@ export async function updateUserHandler(req: Request, res: Response) {
         displayName: updatedUser.displayName,
         bio: updatedUser.bio,
         avatar: updatedUser.avatar,
+        isMember: updatedUser.isMember,
       },
     });
   } catch (err) {

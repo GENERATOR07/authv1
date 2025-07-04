@@ -20,7 +20,4 @@ export async function sendMagicLinkEmail(to: string, magicLink: string) {
     text: `Click this link to login: ${magicLink}`,
     html: `<p>Click <a href="${magicLink}">here</a> to login. This link expires in 15 minutes.</p>`,
   });
-
-  console.log("Message sent: %s", info.messageId);
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 }

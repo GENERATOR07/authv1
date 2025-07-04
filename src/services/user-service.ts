@@ -54,3 +54,18 @@ export async function updateUser(
 
   return user;
 }
+
+export async function updateMembershipStatus(
+  userId: string,
+  isMember: boolean
+) {
+  const user = await UserModel.findByIdAndUpdate(
+    userId,
+    { isMember },
+    { new: true }
+  );
+  if (!user) {
+    throw new Error("User not found");
+  }
+  return user;
+}

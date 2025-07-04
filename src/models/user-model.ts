@@ -11,6 +11,7 @@ export interface IUser extends mongoose.Document {
   avatar?: string;
   createdAt: Date;
   updatedAt: Date;
+  isMember?: boolean;
 }
 
 const UserSchema = new mongoose.Schema<IUser>(
@@ -45,6 +46,10 @@ const UserSchema = new mongoose.Schema<IUser>(
     avatar: {
       type: String,
       trim: true,
+    },
+    isMember: {
+      type: Boolean,
+      default: false,
     },
   },
   {
