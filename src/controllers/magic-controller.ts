@@ -7,6 +7,7 @@ import {
 import { sendMagicLinkEmail } from "../utils/email-util";
 import { generateToken, verifyToken } from "../utils/token-util";
 import { blacklistToken } from "../services/token-service";
+import { env } from "../config/env";
 
 export async function requestMagicLinkHandler(req: Request, res: Response) {
   const { email } = req.body;
@@ -18,7 +19,9 @@ export async function requestMagicLinkHandler(req: Request, res: Response) {
   const user = await createUserIfNotExists(email);
   const token = generateToken({ userId: user._id as string });
 
-  const magicLink = `http://localhost:3001/login?token=${token}`;
+  const magicLink = `${env.FRONTEND_URL}/login?token=${token}`;
+  console.log(magicLink);
+
   await sendMagicLinkEmail(email, magicLink);
 
   return res.json({ message: "Magic link sent to email" });
