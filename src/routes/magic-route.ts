@@ -7,7 +7,7 @@ import {
   getProfileHandler,
 } from "../controllers/magic-controller";
 import { verifyAuth } from "../middleware/auth-middleware";
-import { googleLoginHandler } from "../controllers/auth-controller";
+import { googleLoginRedirectHandler } from "../controllers/auth-controller";
 
 const router = Router();
 
@@ -18,7 +18,10 @@ router.post(
 );
 router.post("/magic-login", magicLoginHandler as unknown as RequestHandler);
 
-router.post("/google-login", googleLoginHandler as unknown as RequestHandler);
+router.post(
+  "/google-login",
+  googleLoginRedirectHandler as unknown as RequestHandler
+);
 
 // Protected routes
 router.get(

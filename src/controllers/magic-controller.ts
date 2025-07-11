@@ -35,7 +35,7 @@ export async function magicLoginHandler(req: Request, res: Response) {
   }
 
   try {
-    const payload = verifyToken(token);
+    verifyToken(token);
     return res.json({
       message: "Logged in successfully",
       token: token, // Return the token for the client to store

@@ -18,4 +18,5 @@ export const env = {
   EMAIL_PASSWORD: getEnv("EMAIL_PASSWORD"),
   GOOGLE_CLIENT_ID: getEnv("GOOGLE_CLIENT_ID"),
   FRONTEND_URL: getEnv("FRONTEND_URL"),
+  PRODUCTION: getEnv("PRODUCTION") === "true",
 };

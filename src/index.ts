@@ -10,10 +10,9 @@ import { verifyAuth } from "./middleware/auth-middleware";
 import { RequestHandler } from "express";
 const app = express();
 
-// Enable CORS for frontend
 app.use(
   cors({
-    origin: "http://localhost:3001", // Replace with your frontend URL
+    origin: env.FRONTEND_URL,
     credentials: true,
   })
 );
